@@ -1,0 +1,98 @@
+{
+    "$schema": "https://www.krakend.io/schema/v3.json",
+    "version": 3,
+    "endpoints": [
+        {
+            "endpoint": "/v1/ordersStatus",
+            "method": "GET",
+            "backend": [
+            {
+                  "url_pattern": "/v1/orders",
+                  "method": "GET",
+                  "host": [
+                    "http://status"
+                  ],
+                  "is_collection":true,
+                  "mapping": {
+                    "collection": "status"
+                  }
+            
+            }]
+        },
+        {
+            "endpoint": "/v1/ordersStatus/{id}",
+            "method": "GET",
+            "output_encoding": "no-op",
+            "backend": [
+            {
+                  "encoding": "no-op",
+                  "url_pattern": "/v1/orders/{id}",
+                  "method": "GET",
+                  "host": [
+                    "http://status"
+                  ]
+            }]
+        },
+        {
+            "endpoint": "/v1/loyaltiesList",
+            "method": "GET",
+            "backend": [
+            {
+                  "url_pattern": "/v1/loyalties",
+                  "method": "GET",
+                  "host": [
+                    "http://loyalty"
+                  ],
+                  "is_collection":true,
+                  "mapping": {
+                    "collection": "loyalty"
+                  }
+            
+            }]
+        },
+        {
+            "endpoint": "/v1/loyaltiesList/{id}",
+            "method": "GET",
+            "output_encoding": "no-op",
+            "backend": [
+            {
+                  "encoding": "no-op",
+                  "url_pattern": "/v1/loyalties/{id}",
+                  "method": "GET",
+                  "host": [
+                    "http://loyalty"
+                  ]
+            }]
+        },
+        {
+            "endpoint": "/v1/data/",
+            "method": "GET",
+            "backend": [
+            {
+                "url_pattern": "/v1/orders",
+                "method": "GET",
+                "host": [
+                  "http://status"
+                ],
+                "is_collection":true,
+                "mapping": {
+                  "collection": "status"
+                }
+            },
+            {
+                "url_pattern": "/v1/loyalties",
+                "method": "GET",
+                "host": [
+                    "http://loyalty"
+                ],
+                "is_collection":true,
+                "mapping": {
+                    "collection": "loyalty"
+                }
+                
+          
+          }] 
+        }
+    ],
+    "extra_config": {}
+}
